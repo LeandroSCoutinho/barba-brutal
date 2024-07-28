@@ -9,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -40,7 +40,7 @@ model Servico {
 model Agendamento {
   id             Int          @id @default(autoincrement())
   emailCliente   String
-  data           DateTime     
+  data           DateTime     @db.Timestamptz(3)
   profissional   Profissional @relation(fields: [profissionalId], references: [id])
   profissionalId Int
   servicos       Servico[]
